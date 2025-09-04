@@ -12,3 +12,25 @@
     /*------------------ Customize color ----------------------*/
     --color-primary: #DB4444;
 }
+     /*----------------- slider style -------------------*/
+.slick-dots {
+    bottom: 34px !important;
+    
+   
+}
+.slick-dots li button {
+
+    background: white !important;
+    border-radius: 50%;
+}
+.slick-dots li.slick-active button:before {
+    opacity: .75;
+    background-color: red;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+.slick-dots li button:before {
+    
+    color: transparent !important;
+   
+}

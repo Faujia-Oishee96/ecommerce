@@ -3,6 +3,7 @@ import logo from '../../assets/logo.png'
 import { CiSearch,CiHeart,CiShoppingCart } from "react-icons/ci";
 import { GoPerson } from "react-icons/go";
 import Container from '../Layout/Container';
+import { Link } from 'react-router';
 
 
 
@@ -20,11 +21,11 @@ const Navbar = () => {
         {/*----------- list part -------------*/}
         <div className='w-[40%] font-primary text-base'>
             <ul className='flex gap-x-[48px]'>
-                <li><a href="">Home</a></li>
-                <li><a href="">Product</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">SignUp</a></li>
+                <li> <Link to ="/">Home</Link> </li>
+                <li> <Link to ="/product">Product</Link> </li>
+                <li> <Link to ="">Contact</Link> </li>
+                <li> <Link to ="">About</Link> </li>
+                <li> <Link to ="">SignUp</Link> </li>
             </ul>
         </div>
         {/*-------------- list end ----------*/}

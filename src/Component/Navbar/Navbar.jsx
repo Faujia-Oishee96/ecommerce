@@ -25,7 +25,7 @@ const Navbar = () => {
                 <li> <Link to ="/product">Product</Link> </li>
                 <li> <Link to ="">Contact</Link> </li>
                 <li> <Link to ="">About</Link> </li>
-                <li> <Link to ="">SignUp</Link> </li>
+                <li> <Link to ="/signup">SignUp</Link> </li>
             </ul>
         </div>
         {/*-------------- list end ----------*/}
@@ -37,7 +37,9 @@ const Navbar = () => {
                 <CiSearch size={24} className='absolute top-[7px] right-[12px] font-bold' />
             </div>
             <CiHeart size={24} className='font-bold' />
+            <Link to="/cart">
             <CiShoppingCart size={24} className='font-bold' />
+            </Link>
              <GoPerson size={24} className='font-bold' />
         </div>
         {/*------------- search end ----------------*/}

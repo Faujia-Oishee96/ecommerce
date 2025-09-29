@@ -4,6 +4,7 @@ import { FaStar } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import { HiOutlineEye } from "react-icons/hi";
 import ProductRating from './ProductRating';
+import {Link} from 'react-router';
 
 const ProductPageRight = () => {
 
@@ -16,14 +17,17 @@ const [currentPage, setCurrentPage] = useState(1)
     .then((data)=> setProductData(data.products)
     )
    },[])
+    
 
+   // -------------showing data according to product per page--------------
      const totalProduct = productData.length
     const productPerPage =6
     const totalPages = Math.ceil(totalProduct/productPerPage)
     const indexOfLastProduct = currentPage * productPerPage
     const indexOfFirstProduct = indexOfLastProduct - productPerPage
     const currentProduct = productData.slice(indexOfFirstProduct, indexOfLastProduct)
-  
+
+               //  -----showing for pages 1 2 3 ...-------
     const data = [...Array(totalPages).keys()].map((index)=>index+1)
   
    
@@ -31,11 +35,11 @@ const [currentPage, setCurrentPage] = useState(1)
     <div>
 
                  {/* --------------card-------------- */}
-                <div className='flex flex-wrap justify-between mt-15'>
+                    <div className='flex flex-wrap justify-between mt-15'>
                      
                      {
                         currentProduct.map((product)=>(
-                            <div className=' relative w-[270px] pb-10'>
+                            <Link to = {`/product/${product.id}`} className=' relative w-[270px] pb-10'>
                      
                       <div className='absolute top-3 right-3 z-[999]'>
                        
@@ -54,13 +58,13 @@ const [currentPage, setCurrentPage] = useState(1)
                       </div>
                       {/*------------- text part ----------*/}
                       <div className='mt-4'>
-                        <p className='font-primary font-medium'>{product.name}</p>
+                        <p className='font-primary font-medium'>{product.title}</p>
                         <p className='py-2 text-primary'>{product.price} <del className='text-[#808080]'>$360</del></p>
                       
                         <ProductRating rating = {product.rating}/>
                         </div>
                     
-                     </div>
+                     </Link>
                         ))
                      }
                      
@@ -74,7 +78,8 @@ const [currentPage, setCurrentPage] = useState(1)
                           data.map((item)=>(
 
                                  <div onClick={()=>setCurrentPage(item)} className= {`py-1 
-                                 px-[15px] font-primary cursor-pointer rounded ${currentPage === item ? "bg-black text-white" : "bg-gray-300 text-black"}`}>{item}</div>
+                                 px-[15px] font-primary cursor-pointer rounded ${currentPage === item ? "bg-black text-white" : "bg-gray-300 text-black"}`}>
+                                    {item}</div>
                           )) 
                      }
                     </div>

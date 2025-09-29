@@ -9,11 +9,10 @@ import NewArrival from '../Component/NewArrival/NewArrival'
 import Services from '../Component/Services/Services'
 
 
-
 const Home = () => {
   return (
     <>
-   
+    
     <Banner/>
     <Categories/>
     <BestSellingProducts/>

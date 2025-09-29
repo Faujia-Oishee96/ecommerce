@@ -7,11 +7,14 @@ import Container from '../Layout/Container'
 // import image4 from '../../assets/remote5.png'
 import { useParams } from 'react-router'
 import SingleProductRating from './SingleProductRating'
-
+import { useDispatch } from 'react-redux'
+import { cartTotal } from '../../Slices/CartSlice'
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 const SingleProductDetails = () => {
   
   const {id} = useParams();
+  const dispatch = useDispatch()
   const [productData, setProductData] = useState([])
   const [selectedImg, setSelectedImg] =useState()
 
@@ -31,26 +34,34 @@ const SingleProductDetails = () => {
       }
      },[singleProduct])
 
+      const handleAddToCart = (product) => {
+        dispatch(cartTotal(product))
+        toast.success("Add To Cart")
+       
+    }
+
 
   return (
     <div className='py-10'>
+      <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition={Bounce}
+            />
       <Container>
         <div className='grid grid-cols-12 row space-x-[30px]'>
 
           <div className='col-span-2'>
             <div className='flex flex-col gap-y-8'>
-                {/* <div className='bg-[#F5F5F5] py-3 px-5 rounded'>
-                <img onClick={(()=>setSelectedImg(image1))} src={image1} alt="" />
-               </div>
-               <div className='bg-[#F5F5F5] py-3 px-5 rounded'>
-                <img src={singleProduct?.thumbnail} alt="" />
-               </div>
-               <div className='bg-[#F5F5F5] py-3 px-5 rounded'>
-                <img src={singleProduct?.thumbnail} alt="" />
-               </div>
-               <div className='bg-[#F5F5F5] py-3 px-5 rounded'>
-                <img src={singleProduct?.thumbnail} alt="" />
-              </div> */}
+               
 
               {
                 singleProduct?.images?.map((img)=>(
@@ -91,9 +102,9 @@ const SingleProductDetails = () => {
               px-[6px] py-[6px] cursor-pointer  hover:bg-[#DB4444] hover:text-white'>XL</p>
             </div>
            <div>
-             <button className=' font-semibold text-[14px] px-[48px] py-[10px] bg-[#DB4444]
+             <button onClick={() => handleAddToCart(singleProduct)} className=' font-semibold text-[14px] px-[48px] py-[10px] bg-[#DB4444]
              text-white rounded'
-            >Buy Now</button>
+            >Add to Cart</button>
            </div>
 
           </div>

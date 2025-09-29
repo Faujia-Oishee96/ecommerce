@@ -30,14 +30,61 @@ const [currentPage, setCurrentPage] = useState(1)
                //  -----showing for pages 1 2 3 ...-------
     const data = [...Array(totalPages).keys()].map((index)=>index+1)
   
-   
+    const[filterProductData, setFilterProductData]= useState([])
+   const handleSearch = (e)=>{
+      let arr = []
+     if(e.target.value.length == 0){
+          setFilterProductData([])
+     }else{
+       productData.filter((product)=>{
+         if(product.title.toLowerCase().includes(e.target.value.toLowerCase())){
+            arr.push(product)
+            setFilterProductData(arr)
+         }
+      })
+     }
+   }
+
   return (
     <div>
+            {/* ------------Search part------------- */}
+                <input onChange={handleSearch} className='border py-1 w-[500px] rounded' type="text" placeholder='Search' />
 
                  {/* --------------card-------------- */}
                     <div className='flex flex-wrap justify-between mt-15'>
                      
                      {
+                        filterProductData.length > 0
+                        ?
+                         filterProductData.map((product)=>(
+                            <Link to = {`/product/${product.id}`} className=' relative w-[270px] pb-10'>
+                     
+                      <div className='absolute top-3 right-3 z-[999]'>
+                       
+                        <div className='bg-white w-[34px] h-[34px] rounded-full flex justify-center items-center'>
+                             <CiHeart size={20} />
+                        </div>
+                        
+                        <div className='bg-white w-[34px] h-[34px] rounded-full flex justify-center items-center mt-2'>
+                            <HiOutlineEye size={20} />
+                         </div>
+                      </div>
+                      {/*------------ image part ----------*/}
+                      <div className='relative group bg-[#F5F5F5] py-[52px] px-[65px] rounded'>
+                         <img src={product.thumbnail} alt="" />
+                         <div><p className='absolute right-0 bottom-0 w-full font-primary font-medium bg-black py-2 px-[87px] text-white text-center hidden group-hover:block'>Add to cart</p></div>
+                      </div>
+                      {/*------------- text part ----------*/}
+                      <div className='mt-4'>
+                        <p className='font-primary font-medium'>{product.title}</p>
+                        <p className='py-2 text-primary'>{product.price} <del className='text-[#808080]'>$360</del></p>
+                      
+                        <ProductRating rating = {product.rating}/>
+                        </div>
+                    
+                     </Link>
+                        ))
+                        :
                         currentProduct.map((product)=>(
                             <Link to = {`/product/${product.id}`} className=' relative w-[270px] pb-10'>
                      

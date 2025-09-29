@@ -1,25 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ProductPageLeft = () => {
+      
+   const [productData, setProductData] = useState([])
 
-     const categoriesData =[
-        {name: "Woman’s Fashion"},
-        {name: "Men’s Fashion"},
-        {name: "Electronics"},
-        {name: "Home & Lifestyle"},
-        {name: "Medicine"},
-        {name: "Sports & Outdoor"},
-        {name: "Baby’s & Toys"},
-        {name: "Groceries & Pets"},
-        {name: "Health & Beauty"}
-        ]
+   useEffect(()=>{
+       fetch("https://dummyjson.com/products")
+       .then((res)=> res.json())
+       .then((data)=> setProductData(data.products)
+       )
+      },[])
+
+ 
+    const categoryProduct = productData.map((product)=>product.category)
+    const uniqueCategory = [... new Set(categoryProduct)]
+
+   //   const categoriesData =[
+   //      {name: "Woman’s Fashion"},
+   //      {name: "Men’s Fashion"},
+   //      {name: "Electronics"},
+   //      {name: "Home & Lifestyle"},
+   //      {name: "Medicine"},
+   //      {name: "Sports & Outdoor"},
+   //      {name: "Baby’s & Toys"},
+   //      {name: "Groceries & Pets"},
+   //      {name: "Health & Beauty"}
+   //      ]
 
   return (
     <div>
         <h2 className='font-primary font-bold text-[20px]'>Shop By Category</h2>
          <div className='mt-[15px]'>
-            {categoriesData.map((category)=>(
-          <p className='font-primary mb-4 w-[300px]'>{category.name}</p>
+            {uniqueCategory.map((category)=>(
+          <p className='font-primary mb-4 w-[300px]'>{category}</p>
         ))}
          </div>
 

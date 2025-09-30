@@ -48,7 +48,10 @@ const [currentPage, setCurrentPage] = useState(1)
   return (
     <div>
             {/* ------------Search part------------- */}
-                <input onChange={handleSearch} className='border ml-[400px] py-1 w-[200px] rounded' type="text" placeholder='Search' />
+            <div className='flex items-center gap-x-2'>
+               <p className='font-semibold font-primary'> Show:</p>
+                <input onChange={handleSearch} className='border px-2 py-2 w-[300px] rounded outline-0 font-secondary' type="text" placeholder='Search' />
+            </div>
 
                  {/* --------------card-------------- */}
                     <div className='flex flex-wrap justify-between mt-15'>

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router';
 
 const ProductPageLeft = () => {
       
    const [productData, setProductData] = useState([])
+
+  
 
    useEffect(()=>{
        fetch("https://dummyjson.com/products")
@@ -34,6 +37,7 @@ const ProductPageLeft = () => {
             {uniqueCategory.map((category)=>(
           <p className='font-primary mb-4 w-[300px]'>{category}</p>
         ))}
+       
          </div>
 
          <h2 className='font-primary font-bold text-[20px] pt-[40px] pb-[15px]'>Shop By Color</h2>
